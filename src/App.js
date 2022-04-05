@@ -34,6 +34,16 @@ function App() {
       })
   }, [])
 
+  function handleFromAmountChange(e) {
+    setAmount(e.target.value)
+    setAmountFromCurrency(true)
+  }
+
+  function handleToAmountChange(e) {
+    setAmount(e.target.value)
+    setAmountFromCurrency(false)
+  }
+
   return (
     <div className="App">
       <h1>Currency Converter</h1>
@@ -42,13 +52,15 @@ function App() {
         currencyOptions={currencyOptions} 
         selectedCurrency={fromCurrency} 
         onChangeCurrency={e => setFromCurrency(e.target.value)}
-        amount={fromAmount} />
+        amount={fromAmount} 
+        onChangeAmount={handleFromAmountChange} />
         <div className='Switch'>=</div>
         <CurrencyRow 
         currencyOptions={currencyOptions} 
         selectedCurrency={toCurrency} 
         onChangeCurrency={e => setToCurrency(e.target.value)} 
-        amount={toAmount} />
+        amount={toAmount} 
+        onChangeAmount={handleToAmountChange} />
       </div>
     </div>
   );
