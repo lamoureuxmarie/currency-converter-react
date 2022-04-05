@@ -2,8 +2,8 @@ import React, { useEffect, useState } from 'react';
 import './App.css';
 import CurrencyRow from './CurrencyRow';
 
-const apiKey = '471ba6182c32b538f2436aaa4515d114';
-const API_URL = `http://api.currencylayer.com/live?access_key=${apiKey}`;
+const apiKey = 'a4937dabf29fee5b6211660456270fe3';
+const API_URL = `http://api.exchangeratesapi.io/v1/latest?access_key=${apiKey}`;
 
 function App() {
   const [currencyOptions, setCurrencyOptions] = useState([])
@@ -13,7 +13,7 @@ function App() {
     fetch(API_URL)
       .then(res => res.json())
       .then(data => {
-        setCurrencyOptions([data.source, ...Object.keys(data.quotes)])
+        setCurrencyOptions([data.base, ...Object.keys(data.rates)])
       })
   }, [])
 
