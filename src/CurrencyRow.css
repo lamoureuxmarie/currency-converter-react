@@ -1,0 +1,9 @@
+.CurrencyRow input, select {
+    border: 1px solid #dadde1;
+    border-radius: 4px;
+    padding: 5px;
+}
+
+.CurrencyRow select {
+    margin-left: 5px;
+}
