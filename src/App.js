@@ -12,11 +12,11 @@ function App() {
   const [exchangeRate, setExchangeRate] = useState()
   const [amount, setAmount] = useState(1)
   const [amountFromCurrency, setAmountFromCurrency] = useState(true)
-  
+
   let toAmount, fromAmount
   if (amountFromCurrency) {
     fromAmount = amount 
-    toAmount = amount * exchangeRate
+    toAmount = amount * exchangeRate || 0;
   } else {
     toAmount = amount
     fromAmount = amount / exchangeRate
@@ -33,6 +33,16 @@ function App() {
         setExchangeRate(data.rates[firstCurrency])
       })
   }, [])
+
+  useEffect(() =>{
+    if (fromCurrency != null && toCurrency != null) {
+    fetch(`${API_URL}&base=${fromCurrency}&symbols=${toCurrency}`)
+    .then(res => res.json())
+    .then(data => setExchangeRate(data.rates[toCurrency]))
+    }
+
+  }, [fromCurrency, toCurrency])
+
 
   function handleFromAmountChange(e) {
     setAmount(e.target.value)
